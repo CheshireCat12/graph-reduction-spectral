@@ -5,8 +5,9 @@ from tqdm import tqdm
 from src.graph_splitting import subgraph_splitting, rebuild_graphs
 from src.mergin_nodes import merge_nodes
 from src.spectral_clustering import spectral_clustering
-from src.utils import load_graphs_from_TUDataset
-from src.utils import split_graphs_by_cc, reassemble_cc_graphs, save_graphs
+from src.utils import load_graphs_from_TUDataset, save_graphs
+from src.utils import split_graphs_by_cc, reassemble_cc_graphs
+from src.utils import set_global_verbose
 
 
 def reduce_graphs(dataset: str,
@@ -19,8 +20,8 @@ def reduce_graphs(dataset: str,
                   node_merging_method: str,
                   folder_results: str,
                   verbose: bool):
-    # Globally silent tqdm if verbose is False
-    tqdm.__init__ = partialmethod(tqdm.__init__, disable=not verbose)
+
+    set_global_verbose(verbose)
 
     # Load graph dataset
     graphs, classes = load_graphs_from_TUDataset(root_dataset,
@@ -36,8 +37,6 @@ def reduce_graphs(dataset: str,
                                           dim_embedding,
                                           n_nodes_per_cluster=n_nodes_per_cluster,
                                           clustering_method=clustering_algorithm)
-    # for idx, graph in enumerate(graphs):
-    #     plot_graph_nx(graph, node_clustering[idx], name=f'./test_reconstruct2/{idx}.png')
 
     # Split the graphs according to the clustering
     subgraphs, lookup = subgraph_splitting(graphs, node_clustering)
@@ -49,7 +48,5 @@ def reduce_graphs(dataset: str,
     if split_by_cc:
         reduced_graphs = reassemble_cc_graphs(reduced_graphs,
                                               cc_to_graph)
-
-    # plot_graph_nx(reduced_graphs[0], [0] * len(reduced_graphs[0]))
 
     save_graphs(folder_results, reduced_graphs, classes)
