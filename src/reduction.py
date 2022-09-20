@@ -1,13 +1,11 @@
-from functools import partialmethod
-
-from tqdm import tqdm
+from pathlib import Path
 
 from src.graph_splitting import subgraph_splitting, rebuild_graphs
 from src.mergin_nodes import merge_nodes
 from src.spectral_clustering import spectral_clustering
 from src.utils import load_graphs_from_TUDataset, save_graphs
-from src.utils import split_graphs_by_cc, reassemble_cc_graphs
 from src.utils import set_global_verbose
+from src.utils import split_graphs_by_cc, reassemble_cc_graphs
 
 
 def reduce_graphs(dataset: str,
@@ -20,8 +18,26 @@ def reduce_graphs(dataset: str,
                   node_merging_method: str,
                   folder_results: str,
                   verbose: bool):
+    """
 
+    Args:
+        dataset:
+        root_dataset:
+        split_by_cc:
+        embedding_algorithm:
+        dim_embedding:
+        clustering_algorithm:
+        rho:
+        node_merging_method:
+        folder_results:
+        verbose:
+
+    Returns:
+
+    """
     set_global_verbose(verbose)
+
+    Path(folder_results).mkdir(parents=True, exist_ok=True)
 
     # Load graph dataset
     graphs, classes = load_graphs_from_TUDataset(root_dataset,

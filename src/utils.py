@@ -299,3 +299,4 @@ def set_global_verbose(verbose: bool = False) -> None:
         logging.basicConfig(level=logging.INFO)
     else:
         tqdm.__init__ = partialmethod(tqdm.__init__, disable=not verbose)
+

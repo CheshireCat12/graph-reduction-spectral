@@ -26,7 +26,7 @@ if __name__ == '__main__':
                              help='Graph dataset to reduce (the dataset has to be in TUDataset)')
     args_parser.add_argument('--root_dataset',
                              type=str,
-                             default='./data',
+                             default='/tmp/data',
                              help='Root of the dataset')
 
     args_parser.add_argument('--split_by_cc',
