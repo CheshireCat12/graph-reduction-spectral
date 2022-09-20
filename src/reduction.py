@@ -4,8 +4,10 @@ from src.graph_splitting import subgraph_splitting, rebuild_graphs
 from src.mergin_nodes import merge_nodes
 from src.spectral_clustering import spectral_clustering
 from src.utils import load_graphs_from_TUDataset, save_graphs
-from src.utils import set_global_verbose
+from src.utils import set_global_verbose, save_parameters
 from src.utils import split_graphs_by_cc, reassemble_cc_graphs
+
+FILE_PARAMETERS = 'parameters.json'
 
 
 def reduce_graphs(dataset: str,
@@ -17,7 +19,8 @@ def reduce_graphs(dataset: str,
                   rho: float,
                   node_merging_method: str,
                   folder_results: str,
-                  verbose: bool):
+                  verbose: bool,
+                  args):
     """
 
     Args:
@@ -31,6 +34,7 @@ def reduce_graphs(dataset: str,
         node_merging_method:
         folder_results:
         verbose:
+        args:
 
     Returns:
 
@@ -38,6 +42,8 @@ def reduce_graphs(dataset: str,
     set_global_verbose(verbose)
 
     Path(folder_results).mkdir(parents=True, exist_ok=True)
+
+    save_parameters(folder_results, FILE_PARAMETERS, vars(args))
 
     # Load graph dataset
     graphs, classes = load_graphs_from_TUDataset(root_dataset,

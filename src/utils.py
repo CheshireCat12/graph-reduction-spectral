@@ -1,4 +1,5 @@
 import csv
+import json
 import os
 import pathlib
 from collections import defaultdict
@@ -15,7 +16,6 @@ from tqdm import tqdm
 ############################################
 #                  Loader                  #
 ############################################
-
 
 def load_graphs_from_TUDataset(root: str,
                                name_dataset: str) -> Tuple[List[nx.Graph], np.ndarray]:
@@ -133,6 +133,27 @@ def save_graphs(path: str,
     if graph_cls is not None:
         filename_cls = os.path.join(path, 'graph_classes.csv')
         _write_classes(graph_cls, filename_cls)
+
+
+############################################
+#             save parameters              #
+############################################
+
+def save_parameters(folder: str, filename: str, parameters: dict):
+    """
+    Save the parameters in `folder/filename`
+
+    Args:
+        folder:
+        filename: File in which to save the parameters.
+        parameters: Parameters to save
+
+    Returns:
+
+    """
+    filename = os.path.join(folder, filename)
+    with open(filename, 'w') as file:
+        json.dump(parameters, file, indent=4)
 
 
 ############################################
@@ -299,4 +320,3 @@ def set_global_verbose(verbose: bool = False) -> None:
         logging.basicConfig(level=logging.INFO)
     else:
         tqdm.__init__ = partialmethod(tqdm.__init__, disable=not verbose)
-
