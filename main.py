@@ -10,10 +10,11 @@ def main(args):
                   embedding_algorithm=args.embedding_algorithm,
                   dim_embedding=args.dim_embedding,
                   clustering_algorithm=args.clustering_algorithm,
-                  rho=args.rho,
+                  reduction_factor=args.reduction_factor,
                   node_merging_method=args.node_merging_method,
                   folder_results=args.folder_results,
-                  verbose=args.verbose)
+                  verbose=args.verbose,
+                  args=args)
 
 
 if __name__ == '__main__':
@@ -46,11 +47,11 @@ if __name__ == '__main__':
                              choices=['kmeans', 'agglomerative'],
                              required=True,
                              help='Select the clustering algorithm to use with the embedded graphs')
-    args_parser.add_argument('--rho',
-                             type=float,
-                             default=0.5,
-                             help='Choose the reduction factor (i.e. the percentage of node remaining in the reduced '
-                                  'graph)')
+    args_parser.add_argument('--reduction_factor',
+                             type=int,
+                             choices=[2, 4, 8, 16],
+                             help='Choose by how much to reduce the size of the graph'
+                                  '(i.e. rho=2 it remains 50% of the nodes)')
 
     args_parser.add_argument('--node_merging_method',
                              choices=['sum', 'hash'],

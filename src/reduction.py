@@ -16,7 +16,7 @@ def reduce_graphs(dataset: str,
                   embedding_algorithm: str,
                   dim_embedding: int,
                   clustering_algorithm: str,
-                  rho: float,
+                  reduction_factor: int,
                   node_merging_method: str,
                   folder_results: str,
                   verbose: bool,
@@ -30,7 +30,7 @@ def reduce_graphs(dataset: str,
         embedding_algorithm:
         dim_embedding:
         clustering_algorithm:
-        rho:
+        reduction_factor:
         node_merging_method:
         folder_results:
         verbose:
@@ -54,7 +54,7 @@ def reduce_graphs(dataset: str,
         graphs, cc_to_graph = split_graphs_by_cc(graphs)
 
     # Find the node clustering for each graph
-    n_nodes_per_cluster = int(1 / rho)
+    n_nodes_per_cluster = reduction_factor
     node_clustering = spectral_clustering(graphs,
                                           dim_embedding,
                                           n_nodes_per_cluster=n_nodes_per_cluster,
