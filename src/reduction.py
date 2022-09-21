@@ -1,3 +1,4 @@
+import logging
 from pathlib import Path
 
 from src.graph_splitting import subgraph_splitting, rebuild_graphs
@@ -40,6 +41,8 @@ def reduce_graphs(dataset: str,
 
     """
     set_global_verbose(verbose)
+    
+    logging.info(f'Run Spectral Graph Reduction - {dataset}')
 
     Path(folder_results).mkdir(parents=True, exist_ok=True)
 
