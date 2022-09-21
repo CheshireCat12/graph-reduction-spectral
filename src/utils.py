@@ -8,7 +8,9 @@ from typing import List, Dict, Tuple, Optional
 import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
+import torch
 import torch_geometric.utils as tutils
+from torch_geometric.data import Data
 from torch_geometric.datasets import TUDataset
 from tqdm import tqdm
 
@@ -37,9 +39,23 @@ def load_graphs_from_TUDataset(root: str,
 
     node_attr = 'x'
 
+    tmp_graph = dataset[0]
+    is_graph_labelled = node_attr in tmp_graph.keys
+    is_graph_lbl_empty = tmp_graph.x.size(1) == 0 if is_graph_labelled else True
+
     # Convert the PyG graphs into NetworkX graphs
-    nx_graphs = [tutils.to_networkx(graph, node_attrs=[node_attr], to_undirected=True)
-                 for graph in dataset]
+    nx_graphs = []
+    for graph in tqdm(dataset, desc='Convert graph to nx.Graph'):
+        # Check if the graph is unlabelled
+        if not is_graph_labelled or is_graph_lbl_empty:
+            graph = Data(x=torch.tensor(np.ones((graph.num_nodes, 2))),
+                         y=graph.y,
+                         edge_index=graph.edge_index)
+
+        nx_graph = tutils.to_networkx(graph,
+                                      node_attrs=[node_attr],
+                                      to_undirected=True)
+        nx_graphs.append(nx_graph)
 
     # Cast the node attribute x from list into np.array
     for nx_graph in nx_graphs:

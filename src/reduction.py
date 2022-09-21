@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from src.graph_splitting import subgraph_splitting, rebuild_graphs
-from src.mergin_nodes import merge_nodes
+from src.merging_nodes import merge_nodes
 from src.spectral_clustering import spectral_clustering
 from src.utils import load_graphs_from_TUDataset, save_graphs
 from src.utils import set_global_verbose, save_parameters
