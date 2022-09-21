@@ -90,7 +90,7 @@ def _get_n_clusters(graph_embedding: np.ndarray,
     n_nodes, _ = graph_embedding.shape
 
     n = n_nodes / n_nodes_per_cluster
-    n_clusters = math.ceil(n) if (n % 1) > .5 else math.floor(n)
+    n_clusters = math.floor(n)
 
     return n_clusters or 1
 
