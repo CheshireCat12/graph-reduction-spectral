@@ -56,7 +56,7 @@ if __name__ == '__main__':
     args_parser.add_argument('--node_merging_method',
                              choices=['sum', 'hash'],
                              required=True,
-                             help='Select the node merging method to use to concatenate the nodes together')
+                             help='Select the node merging method to concatenate the nodes together')
 
     args_parser.add_argument('--folder_results',
                              type=str,

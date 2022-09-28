@@ -28,7 +28,20 @@ def _merge_nodes_by_summing(subgraphs: List[nx.Graph]) -> List[nx.Graph]:
     return reduced_subgraphs
 
 
-merging_methods = {'sum': _merge_nodes_by_summing}
+def _merge_nodes_by_hashing(subgraphs: List[nx.Graph]) -> List[nx.Graph]:
+    """
+
+    Args:
+        subgraphs:
+
+    Returns:
+
+    """
+    pass
+
+
+MERGING_METHODS = {'sum': _merge_nodes_by_summing,
+                   'hash': _merge_nodes_by_hashing}
 
 
 def merge_nodes(subgraphs: List[nx.Graph],
@@ -43,8 +56,8 @@ def merge_nodes(subgraphs: List[nx.Graph],
     Returns:
 
     """
-    assert method in merging_methods, f'The merging method: {method} is not available!'
+    assert method in MERGING_METHODS, f'The merging method: {method} is not available!'
 
-    reduced_subgraphs = merging_methods[method](subgraphs)
+    reduced_subgraphs = MERGING_METHODS[method](subgraphs)
 
     return reduced_subgraphs
