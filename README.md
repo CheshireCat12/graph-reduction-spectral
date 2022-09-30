@@ -15,7 +15,7 @@ Small molecules:
 - Mutagenicity   4337    2    30.32    30.77 (standard)
 - NCI1           4110    2    29.87    32.30 (standard)
 - NCI109         4127    2    29.68    32.13 (standard)
-- NCI-H23H      40353    2    46.67    48.69 (big number of graphs)
+- NCI-H23H      40353    2    46.67    48.69 (big number of graphs)*
 
 Bioinformatics:
 - DD             1178    2    284.32   715.66 (standard)
@@ -29,7 +29,7 @@ Computer vision:
 
 Social networks:
 - COLLAB              5000	3	74.49   2457.78 (standard)
-- github_stargazers   12725	2	113.79	234.64 (big number of graphs)
+- github_stargazers   12725	2	113.79	234.64 (big number of graphs)*
 - REDDIT-BINARY       2000	2	429.63	497.75 (big graphs and big number of graphs)
 - REDDIT-MULTI-5K     4999	5	508.52	594.87 (big graphs and big number of graphs)
 - REDDIT-MULTI-12K    11929	11	391.41	456.89 (big number of graphs)
