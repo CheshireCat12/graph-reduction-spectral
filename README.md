@@ -29,11 +29,7 @@ Computer vision:
 
 Social networks:
 - COLLAB              5000	3	74.49   2457.78 (standard)
-- github_stargazers   12725	2	113.79	234.64 (big number of graphs)*
 - REDDIT-BINARY       2000	2	429.63	497.75 (big graphs and big number of graphs)
 - REDDIT-MULTI-5K     4999	5	508.52	594.87 (big graphs and big number of graphs)
 - REDDIT-MULTI-12K    11929	11	391.41	456.89 (big number of graphs)
 
-Synthetic:
-- COLORS-3       10500	11	61.31	91.03 (big number of graphs)
-- SYNTHETIC      300	2	100.00	196.00 (standard)
