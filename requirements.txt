@@ -1,5 +1,4 @@
 ipympl
-jupyterlab==3.4.7
 matplotlib
 networkx
 numpy
